@@ -12,6 +12,7 @@ export interface MenuItem {
     price: string;
     description: string;
     nutrition: NutritionInfo;
+    image?: string; // Optional image URL for the dish
 }
 
 export interface MenuSubSection {
@@ -29,4 +30,5 @@ export interface NutritionPopupProps {
     info: NutritionInfo;
     position: 'left' | 'right';
     itemRect: DOMRect | null;
+    image?: string;
 }
