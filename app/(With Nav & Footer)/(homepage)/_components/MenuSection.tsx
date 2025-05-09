@@ -16,9 +16,21 @@ const breakpointColumnsObj = {
 const NutritionPopup: React.FC<NutritionPopupProps> = ({ info, position, itemRect, image }) => {
     const popupRef = useRef<HTMLDivElement>(null);
     const [adjustedPosition, setAdjustedPosition] = useState(position);
+    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
-        if (!itemRect || !popupRef.current) return;
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 1024); // lg breakpoint
+        };
+
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    useEffect(() => {
+        if (!itemRect || !popupRef.current || isMobile) return;
 
         const popupWidth = popupRef.current.offsetWidth;
         const viewportWidth = window.innerWidth;
@@ -33,15 +45,18 @@ const NutritionPopup: React.FC<NutritionPopupProps> = ({ info, position, itemRec
         } else {
             setAdjustedPosition(position);
         }
-    }, [position, itemRect]);
+    }, [position, itemRect, isMobile]);
 
     return (
         <motion.div
             ref={popupRef}
-            className={`absolute ${adjustedPosition === 'left' ? 'right-full mr-4' : 'left-full ml-4'} top-1/2 -translate-y-1/2 w-80 !bg-white rounded-xl shadow-lg border p-6 z-[999]`}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
+            className={`absolute ${isMobile
+                ? 'left-0 right-0 top-full mt-4'
+                : `${adjustedPosition === 'left' ? 'right-full mr-4' : 'left-full ml-4'} top-1/2 -translate-y-1/2`
+                } w-full lg:w-80 !bg-white rounded-xl shadow-lg border p-6 z-[999]`}
+            initial={{ opacity: 0, scale: 0.8, y: isMobile ? 20 : 0 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: isMobile ? 20 : 0 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
         >
             {image && (
