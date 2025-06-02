@@ -11,7 +11,6 @@ export interface MenuItem {
     name: string;
     price: string;
     description: string;
-    nutrition: NutritionInfo;
     image?: string; // Optional image URL for the dish
 }
 

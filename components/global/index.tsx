@@ -2,13 +2,15 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { Clock, Facebook, Instagram, MapPin, Menu, X } from 'lucide-react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeLink, setActiveLink] = useState('/');
-
+const pathname = usePathname()
+  const result: boolean = scrolled || pathname !== "/";
   // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
@@ -55,7 +57,7 @@ export const Navbar = () => {
       animate="visible"
       variants={navbarVariants}
       className={`fixed w-full z-50 transition-all duration-500 ${
-        scrolled
+        result
           ? 'bg-white py-4 shadow'
           : 'bg-transparent py-6'
       }`}
@@ -69,7 +71,7 @@ export const Navbar = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <Link href="/" className={scrolled ? "text-black" : "text-white"}>
+            <Link href="/" className={result ? "text-black" : "text-white"}>
               <div className="flex flex-col items-start ">
                 <span className="text-3xl font-display">GRAND</span>
                 <span className="text-xs tracking-widest font-display">RESTAURANT</span>
@@ -83,7 +85,7 @@ export const Navbar = () => {
               whileTap={{ scale: 0.95 }}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className={`p-2 rounded-md focus:outline-none ${
-                scrolled ? "text-gray-800" : "text-white"
+                result ? "text-gray-800" : "text-white"
               }`}
               aria-label="Toggle menu"
             >
@@ -98,8 +100,8 @@ export const Navbar = () => {
                 <Link href={link.path}
                   className={`font-medium relative px-1 py-1 transition-colors hover:text-opacity-100 ${
                     activeLink === link.path
-                      ? scrolled ? 'text-black font-semibold' : 'text-white font-semibold'
-                      : scrolled ? 'text-black text-opacity-70' : 'text-white text-opacity-80'
+                      ? result ? 'text-black font-semibold' : 'text-white font-semibold'
+                      : result ? 'text-black text-opacity-70' : 'text-white text-opacity-80'
                   }`}
                   onClick={() => setActiveLink(link.path)}
                 >
@@ -107,7 +109,7 @@ export const Navbar = () => {
                   {activeLink === link.path && (
                     <motion.div
                       layoutId="activeNavItem"
-                      className={`absolute bottom-0 left-0 right-0 h-0.5 ${scrolled ? 'bg-amber-600' : 'bg-white'}`}
+                      className={`absolute bottom-0 left-0 right-0 h-0.5 ${result ? 'bg-amber-600' : 'bg-white'}`}
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ duration: 0.3 }}
@@ -122,7 +124,7 @@ export const Navbar = () => {
               <Link
                 href="/reservation"
                 className={`font-medium px-6 py-2 border transition-all duration-300 ${
-                  scrolled
+                  result
                     ? 'border-black text-black hover:bg-black hover:text-white'
                     : 'border-white text-white hover:bg-white hover:text-black '
                 }`}

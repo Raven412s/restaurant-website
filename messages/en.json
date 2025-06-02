@@ -1,0 +1,37 @@
+{
+    "HomePage": {
+        "HeroSection": {
+            "welcome": "Welcome to",
+            "aroma": "AROMA",
+            "indArab": "INDIAN & ARABIC",
+            "restaurant": "RESTAURANT"
+        },
+        "OurStory": {
+            "discover": "Discover",
+            "ourStory": "OUR STORY",
+            "para1": "  Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi.",
+            "learnMore": "Learn More"
+        },
+        "LocationSection": {
+            "visitOur": "Visit Our",
+            "restaurant": "RESTAURANT",
+            "para1": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,  rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi.",
+            "getLocations": "Get Locations"
+        },
+        "TestimonialSection": {
+            "customer": "Customer",
+            "testimonials": "TESTIMONIALS"
+        }
+    },
+    "MenuPage": {
+        "checkOut": "Check out",
+        "ourMenus": "Our Menus"
+    },
+    "MenuSection": {
+        "discover": "Discover",
+        "menus": "MENUS",
+        "para1": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam, suscipit vitae!",
+        "para2": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptate maiores sit doloribus.",
+        "loadingMenu": "Loading Menu"
+    }
+}

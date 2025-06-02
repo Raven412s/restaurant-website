@@ -1,9 +1,10 @@
-import mongoose from 'mongoose'
+// lib/mongoDb.ts
+import mongoose from 'mongoose';
 
-const MONGODB_URI = process.env.MONGODB_URI
+const MONGODB_URI = process.env.MONGODB_URI;
 
 if (!MONGODB_URI) {
-  throw new Error("⚠️ Please define the MONGODB_URI environment variable inside .env.local")
+  throw new Error("⚠️ Please define the MONGODB_URI environment variable inside .env.local");
 }
 
 // Define a proper type for the cached connection
@@ -13,21 +14,21 @@ interface MongooseCache {
 }
 
 // Cache the mongoose connection
-const globalWithMongo = global as unknown as {
-  mongoose?: MongooseCache
-}
+const globalWithMongo = global as {
+  mongoose?: MongooseCache;
+};
 
 // Global variable to store the connection across hot reloads in dev
-const cached: MongooseCache = globalWithMongo.mongoose || { conn: null, promise: null }
+const cached: MongooseCache = globalWithMongo.mongoose || { conn: null, promise: null };
 
 // Store on the global object for reuse between hot reloads
 if (!globalWithMongo.mongoose) {
-  globalWithMongo.mongoose = cached
+  globalWithMongo.mongoose = cached;
 }
 
 export async function connectToDb(): Promise<typeof mongoose> {
   if (cached.conn) {
-    return cached.conn
+    return cached.conn;
   }
 
   if (!cached.promise) {
@@ -39,21 +40,21 @@ export async function connectToDb(): Promise<typeof mongoose> {
         bufferCommands: false,
       })
       .then((mongoose) => {
-        console.log("✅ MongoDB connected")
-        return mongoose
+        console.log("✅ MongoDB connected");
+        return mongoose;
       })
       .catch((err) => {
-        console.error("❌ MongoDB connection failed:", err)
-        throw err
-      })
+        console.error("❌ MongoDB connection failed:", err);
+        throw err;
+      });
   }
 
   try {
-    cached.conn = await cached.promise
-    return cached.conn
+    cached.conn = await cached.promise;
+    return cached.conn;
   } catch (error) {
     // Reset the promise so we can retry next time
-    cached.promise = null
-    throw error
+    cached.promise = null;
+    throw error;
   }
 }
