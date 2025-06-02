@@ -22,12 +22,13 @@ const itemSchema = z.object({
     price: z.string().min(1, "Price is required"),
     description: z.string().min(1, "Description is required"),
     image: z
-  .string()
-  .min(1, "Image is required")
-  .refine((val) => val.startsWith("http") || val.startsWith("/uploads"), {
-    message: "Must be a valid image path or URL",
-  }),
-
+        .string()
+        .refine(
+            (val) => !val || val.startsWith("http") || val.startsWith("/uploads"),
+            {
+                message: "Must be a valid image path or URL",
+            }
+        ),
 })
 
 const subSectionSchema = z.object({
@@ -63,6 +64,7 @@ export default function AddMenuItemForm() {
                 },
             ],
         },
+        mode: "onChange",
     })
 
     const {
