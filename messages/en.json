@@ -33,5 +33,12 @@
         "para1": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam, suscipit vitae!",
         "para2": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptate maiores sit doloribus.",
         "loadingMenu": "Loading Menu"
+    },
+    "Navbar" : {
+        "home" : "Home",
+        "menus":"Menus",
+        "about":"About Us",
+        "findUs":"Find Us",
+        "reservation":"Reservation"
     }
 }

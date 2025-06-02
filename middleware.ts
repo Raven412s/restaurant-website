@@ -1,24 +1,11 @@
 import createMiddleware from 'next-intl/middleware';
-import { NextRequest, NextResponse } from 'next/server';
-import { routing } from './i18n/routing';
+import {routing} from './i18n/routing';
 
-const intlMiddleware = createMiddleware(routing);
-
-export default function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl;
-
-  // ✅ Redirect from '/' to '/en' (defaultLocale)
-  if (pathname === '/') {
-    return NextResponse.redirect(new URL(`/${routing.defaultLocale}`, request.url));
-  }
-
-  // Handle everything else via next-intl
-  return intlMiddleware(request);
-}
+export default createMiddleware(routing);
 
 export const config = {
-  matcher: [
-    // Match all routes except the following:
-    '/((?!api|_next|_vercel|.*\\..*).*)',
-  ],
+  // Match all pathnames except for
+  // - … if they start with `/api`, `/trpc`, `/_next` or `/_vercel`
+  // - … the ones containing a dot (e.g. `favicon.ico`)
+  matcher: '/((?!api|trpc|_next|_vercel|.*\\..*).*)'
 };
