@@ -3,8 +3,9 @@
 import { useState, useRef } from "react"
 import { Button } from "./button"
 import { Input } from "./input"
-import { Image, Upload, X } from "lucide-react"
+import { Image as ImageIcon, Upload, X } from "lucide-react"
 import { toast } from "sonner"
+import Image from "next/image"
 
 interface ImageInputProps {
     value?: string
@@ -120,15 +121,16 @@ export function ImageInput({ value = "", onChange, onBlur, name }: ImageInputPro
                     </Button>
                     <div className="relative h-10 w-10">
                         {!previewError ? (
-                            <img
+                            <Image
                                 src={value}
                                 alt="Preview"
+                                fill
                                 className="h-10 w-10 object-cover rounded-md"
                                 onError={handleImageError}
                             />
                         ) : (
                             <div className="h-10 w-10 rounded-md bg-gray-100 flex items-center justify-center">
-                                <Image className="h-6 w-6 text-gray-400" />
+                                <ImageIcon className="h-6 w-6 text-gray-400" />
                             </div>
                         )}
                     </div>
