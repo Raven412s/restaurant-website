@@ -5,6 +5,7 @@ import { routing } from './routing';
 const messagesMap = {
   en: () => import('../messages/en.json'),
   ar: () => import('../messages/ar.json'),
+  ru: () => import('../messages/ru.json')
 };
 
 export default getRequestConfig(async ({ requestLocale }) => {

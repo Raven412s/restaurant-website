@@ -6,6 +6,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
+import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from 'framer-motion';
 import { Clock, Facebook, Instagram, MapPin, Menu, X } from 'lucide-react';
 import { useTranslations } from 'next-intl';
@@ -18,9 +19,8 @@ export const Navbar = () => {
     const [scrolled, setScrolled] = useState(false);
     const [activeLink, setActiveLink] = useState('/');
     const pathname = usePathname()
+    const result: boolean = scrolled || (pathname !== "/en" && pathname !== "/ar");
     const router = useRouter()
-    const result: boolean = scrolled || pathname !== "/";
-
     const switchLocale = (locale: string) => {
         // Get the current path without the locale prefix
         const pathWithoutLocale = pathname.replace(/^\/[a-z]{2}/, '')
@@ -150,7 +150,7 @@ export const Navbar = () => {
                     </nav>
 
                     {/* Language Switcher */}
-                    <div className="hidden md:block">
+                    <div className={cn("hidden md:block", result ? "" : "text-white")}>
                         <LocaleSwitcher switchLocale={switchLocale} />
                     </div>
                 </div>
@@ -242,6 +242,7 @@ export const Navbar = () => {
                                         <SelectContent>
                                             <SelectItem value="en">English</SelectItem>
                                             <SelectItem value="ar">العربية</SelectItem>
+                                            <SelectItem value="ru">Русский</SelectItem>
                                         </SelectContent>
                                     </Select>
                                 </div>
@@ -255,29 +256,30 @@ export const Navbar = () => {
 };
 
 export const Footer = () => {
+    const t = useTranslations("Footer");
     const footerSections = [
         {
-            title: "Hours",
+            title: t("hours"),
             content: [
-                { icon: Clock, text: "Monday - Thursday: 11am - 10pm" },
-                { icon: Clock, text: "Friday - Saturday: 11am - 11pm" },
-                { icon: Clock, text: "Sunday: 11am - 9pm" }
+                { icon: Clock, text: t("workingHours.weekdays") },
+                { icon: Clock, text: t("workingHours.weekend") },
+                { icon: Clock, text: t("workingHours.sunday") }
             ]
         },
         {
-            title: "Location",
+            title: t("location"),
             content: [
-                { icon: MapPin, text: "123 Culinary Avenue\nGourmet City, GC 12345" }
+                { icon: MapPin, text: t("address") }
             ]
         },
         {
-            title: "Quick Links",
+            title: t("quickLinks"),
             links: [
-                { name: "Menu", path: "/menu" },
-                { name: "Reservations", path: "/reservations" },
-                { name: "Private Events", path: "/events" },
-                { name: "Gift Cards", path: "/gift-cards" },
-                { name: "Careers", path: "/careers" }
+                { name: t("links.menu"), path: "/menu" },
+                { name: t("links.reservations"), path: "/reservations" },
+                { name: t("links.privateEvents"), path: "/events" },
+                { name: t("links.giftCards"), path: "/gift-cards" },
+                { name: t("links.careers"), path: "/careers" }
             ]
         }
     ];
@@ -314,7 +316,7 @@ export const Footer = () => {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
                     <motion.div variants={itemVariants}>
                         <h3 className="text-xl font-bold mb-4 font-serif">Epicurean</h3>
-                        <p className="text-gray-400 mb-4">Where culinary artistry meets timeless elegance.</p>
+                        <p className="text-gray-400 mb-4">{t("tagline")}</p>
                         <div className="flex space-x-4">
                             <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }}>
                                 <Link href="#" className="text-gray-400 hover:text-white transition-colors">
@@ -370,11 +372,11 @@ export const Footer = () => {
                     variants={itemVariants}
                     className="border-t border-gray-800 pt-8 text-center text-gray-400 text-sm"
                 >
-                    <p>&copy; {new Date().getFullYear()} Epicurean. All rights reserved.</p>
+                    <p>{t("copyright", { year: new Date().getFullYear() })}</p>
                     <div className="mt-2 space-x-4">
-                        <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
-                        <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
-                        <Link href="/accessibility" className="hover:text-white transition-colors">Accessibility</Link>
+                        <Link href="/privacy" className="hover:text-white transition-colors">{t("legal.privacy")}</Link>
+                        <Link href="/terms" className="hover:text-white transition-colors">{t("legal.terms")}</Link>
+                        <Link href="/accessibility" className="hover:text-white transition-colors">{t("legal.accessibility")}</Link>
                     </div>
                 </motion.div>
             </div>
@@ -388,20 +390,35 @@ interface LocaleSwitcherProps {
 }
 
 export function LocaleSwitcher({ switchLocale, className }: LocaleSwitcherProps) {
+    const [scrolled, setScrolled] = useState(false);
     const pathname = usePathname()
     const currentLocale = pathname.startsWith('/ar') ? 'ar' : 'en'
+    // Handle scroll effect
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 50);
+        };
 
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
+    const result: boolean = scrolled || (pathname !== "/en" && pathname !== "/ar");
     return (
         <Select
             onValueChange={switchLocale}
             defaultValue={currentLocale}
         >
-            <SelectTrigger className={`w-max ${className}`}>
+            <SelectTrigger className={`w-max ${className} `} color={cn(result ? "black" : "white")}>
                 <SelectValue placeholder="Select language" />
             </SelectTrigger>
             <SelectContent>
                 <SelectItem value="en">English</SelectItem>
                 <SelectItem value="ar">العربية</SelectItem>
+                <SelectItem value="ru">Русский</SelectItem>
             </SelectContent>
         </Select>
     )

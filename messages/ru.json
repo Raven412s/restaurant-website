@@ -1,0 +1,80 @@
+{
+    "HomePage": {
+        "HeroSection": {
+            "welcome": "Добро пожаловать в",
+            "aroma": "AROMA",
+            "indArab": "ИНДИЙСКИЙ И АРАБСКИЙ",
+            "restaurant": "РЕСТОРАН"
+        },
+        "OurStory": {
+            "discover": "Откройте",
+            "ourStory": "НАША ИСТОРИЯ",
+            "para1": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi.",
+            "learnMore": "Узнать больше"
+        },
+        "LocationSection": {
+            "visitOur": "Посетите наш",
+            "restaurant": "РЕСТОРАН",
+            "para1": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi.",
+            "getLocations": "Найти нас"
+        },
+        "TestimonialSection": {
+            "customer": "Отзывы",
+            "testimonials": "КЛИЕНТОВ"
+        }
+    },
+    "MenuPage": {
+        "checkOut": "Ознакомьтесь с",
+        "ourMenus": "Нашими Меню"
+    },
+    "MenuSection": {
+        "discover": "Откройте",
+        "menus": "МЕНЮ",
+        "para1": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam, suscipit vitae!",
+        "para2": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptate maiores sit doloribus.",
+        "loadingMenu": "Загрузка меню"
+    },
+    "Navbar": {
+        "home": "Главная",
+        "menus": "Меню",
+        "about": "О нас",
+        "findUs": "Найти нас",
+        "reservation": "Бронирование"
+    },
+    "Footer": {
+        "hours": "Часы работы",
+        "location": "Расположение",
+        "quickLinks": "Быстрые ссылки",
+        "workingHours": {
+            "weekdays": "Понедельник - Четверг: 11:00 - 22:00",
+            "weekend": "Пятница - Суббота: 11:00 - 23:00",
+            "sunday": "Воскресенье: 11:00 - 21:00"
+        },
+        "address": "123 Кулинарный проспект\nГурман Сити, GC 12345",
+        "links": {
+            "menu": "Меню",
+            "reservations": "Бронирование",
+            "privateEvents": "Частные мероприятия",
+            "giftCards": "Подарочные карты",
+            "careers": "Карьера"
+        },
+        "tagline": "Где кулинарное искусство встречается с вневременной элегантностью.",
+        "copyright": "© {year} Epicurean. Все права защищены.",
+        "legal": {
+            "privacy": "Политика конфиденциальности",
+            "terms": "Условия использования",
+            "accessibility": "Доступность"
+        }
+    },
+    "AboutPage": {
+        "hero": {
+            "discover": "Откройте",
+            "aboutUs": "О НАС"
+        },
+        "testimonial": {
+            "tagline": "Неповторимый опыт ресторанной кухни",
+            "description": "Один из самых впечатляющих ресторанов, открывшихся в Сент-Килде за последние годы – у этих ребят многолетний опыт, и это видно во всем, от декора до подачи блюд – идеально!",
+            "author": "Дженнифер Картер"
+        }
+    }
+}

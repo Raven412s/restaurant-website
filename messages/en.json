@@ -34,11 +34,47 @@
         "para2": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptate maiores sit doloribus.",
         "loadingMenu": "Loading Menu"
     },
-    "Navbar" : {
-        "home" : "Home",
-        "menus":"Menus",
-        "about":"About Us",
-        "findUs":"Find Us",
-        "reservation":"Reservation"
+    "Navbar": {
+        "home": "Home",
+        "menus": "Menus",
+        "about": "About Us",
+        "findUs": "Find Us",
+        "reservation": "Reservation"
+    },
+    "Footer": {
+        "hours": "Hours",
+        "location": "Location",
+        "quickLinks": "Quick Links",
+        "workingHours": {
+            "weekdays": "Monday - Thursday: 11am - 10pm",
+            "weekend": "Friday - Saturday: 11am - 11pm",
+            "sunday": "Sunday: 11am - 9pm"
+        },
+        "address": "123 Culinary Avenue\nGourmet City, GC 12345",
+        "links": {
+            "menu": "Menu",
+            "reservations": "Reservations",
+            "privateEvents": "Private Events",
+            "giftCards": "Gift Cards",
+            "careers": "Careers"
+        },
+        "tagline": "Where culinary artistry meets timeless elegance.",
+        "copyright": "© {year} Epicurean. All rights reserved.",
+        "legal": {
+            "privacy": "Privacy Policy",
+            "terms": "Terms of Service",
+            "accessibility": "Accessibility"
+        }
+    },
+    "AboutPage": {
+        "hero": {
+            "discover": "Discover",
+            "aboutUs": "ABOUT US"
+        },
+        "testimonial": {
+            "tagline": "Ultimate dining experience like no other",
+            "description": "One of the most exciting eateries to open in St Kilda. in years – These guys have years of experience and it shows, from the decor to the presentation – perfect!",
+            "author": "Jennifer Carter"
+        }
     }
 }

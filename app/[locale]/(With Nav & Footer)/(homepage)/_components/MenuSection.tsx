@@ -75,7 +75,7 @@ const MenuCard: React.FC<MenuCardProps> = ({ card }) => {
                                                 {item.name}
                                             </span>
                                         </div>
-                                        <span className="text-xl sm:text-2xl font-display font-semibold">{item.price}</span>
+                                        <span className="text-xl sm:text-2xl font-display font-semibold min-w-max">{item.price}</span>
                                     </div>
                                     <div className="text-base sm:text-lg font-medium mt-1">{item.description}</div>
                                 </div>
@@ -149,7 +149,11 @@ export const MenuSection = () => {
     useEffect(() => {
         const fetchMenu = async () => {
             try {
-                const res = await fetch('/api/menu-sections');
+                const res = await fetch('/api/menu-sections', {
+                    headers: {
+                        'x-locale': window.location.pathname.split('/')[1] || 'en'
+                    }
+                });
                 const data = await res.json();
                 setMenuData(data);
             } catch (err) {
@@ -185,7 +189,7 @@ export const MenuSection = () => {
                                 {t('discover')}
                             </h1>
                             <h2 className="text-4xl sm:text-5xl md:text-6xl font-display tracking-wide font-bold">
-                            {t('menus')}
+                                {t('menus')}
                             </h2>
                         </motion.div>
                         <motion.div

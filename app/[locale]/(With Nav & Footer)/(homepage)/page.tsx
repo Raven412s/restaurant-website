@@ -21,7 +21,7 @@ const HomePage = () => {
             <SeparatorParallax
                 imageSrc='/Restaurant-Dishes.mp4'
             />
-        <LocationSection/>
+        <LocationSection direction='rtl'/>
         <TestimonialSection/>
         <PlatesGrid/>
         </div>
