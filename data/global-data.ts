@@ -90,3 +90,15 @@ export const testimonials = [
       customerImage: "/face5.jpg"
     }
   ];
+
+
+  export const gallery = [
+    "/gallery/1.jpg",
+    "/gallery/2.png",
+    "/gallery/3.png",
+    "/gallery/4.png",
+    "/gallery/5.png",
+    "/gallery/6.png",
+    "/gallery/7.png",
+    "/gallery/8.png",
+  ]

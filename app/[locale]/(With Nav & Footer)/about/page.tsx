@@ -3,6 +3,10 @@ import Image from 'next/image'
 import React from 'react'
 import { useTranslations } from 'next-intl'
 import LocationSection from '../(homepage)/_components/LocationSection'
+import { gallery } from '@/data/global-data'
+import GallerySection from './galleySection'
+import { PlatesGrid } from '../(homepage)/_components/PlatesGrid'
+
 
 const AboutPage = () => {
     const t = useTranslations('AboutPage')
@@ -34,11 +38,12 @@ const AboutPage = () => {
                     <span className='text-5xl font-style font-semibold'>{t('testimonial.author')}</span>
                 </div>
             </div>
-            <div className="">
-                <LocationSection direction='ltr'/>
-            </div>
+            <LocationSection direction='ltr' />
+
+            <GallerySection gallery={gallery} />
 
             <SeparatorParallax imageSrc='/chocolate-explosion.jpg' />
+            <PlatesGrid/>
         </div>
     )
 }
