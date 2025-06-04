@@ -16,7 +16,7 @@ const AboutPage = () => {
             {/* Hero Section */}
             <div className="relative h-[60vh] w-full">
                 <Image
-                    src="/menu-hero.jpg"
+                    src="/about-hero.jpg"
                     alt="Restaurant Menu"
                     fill
                     priority
